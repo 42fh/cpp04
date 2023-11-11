@@ -66,6 +66,8 @@ void CatTests()
 	{
 		Cat c1;
 		c1.makeSound();
+		Cat c2(c1);
+		c2 = c1;
 	}
 }
 
