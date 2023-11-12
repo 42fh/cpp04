@@ -1,6 +1,8 @@
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 void ProvidedTests()
 {
@@ -20,6 +22,24 @@ void ProvidedTests()
 		delete j;
 		delete i;
 	}
+	std::cout << std::endl;
+}
+
+void WrongProvidedTests()
+{
+	std::cout << "===========================" << std::endl;
+	std::cout << "Wrong Provided Tests (PDF):" << std::endl;
+	{
+		const WrongAnimal* meta = new WrongAnimal();
+		const WrongAnimal* i = new WrongCat();
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound(); //will output the Animal sound!
+		meta->makeSound();
+
+		delete meta;
+		delete i;
+	}
+	std::cout << std::endl;
 }
 
 void AnimalTests()
@@ -57,6 +77,7 @@ void AnimalTests()
 			a8.makeSound();
 		}
 	}
+	std::cout << std::endl;
 }
 
 void CatTests()
@@ -68,7 +89,40 @@ void CatTests()
 		c1.makeSound();
 		Cat c2(c1);
 		c2 = c1;
+		const Cat c3(c2);
+		c3.makeSound();
 	}
+	std::cout << std::endl;
+}
+
+void WrongCatTests()
+{
+	std::cout << "==============" << std::endl;
+	std::cout << "WrongCat Tests" << std::endl;
+	{
+		WrongCat wc1;
+		wc1.makeSound();
+		WrongCat wc2(wc1);
+		wc2 = wc1;
+		const WrongCat wc3(wc2);
+		wc3.makeSound();
+	}
+	std::cout << std::endl;
+}
+
+void DogTests()
+{
+	std::cout << "=========" << std::endl;
+	std::cout << "Dog Tests" << std::endl;
+	{
+		Dog d1;
+		d1.makeSound();
+		Dog d2(d1);
+		d2 = d1;
+		const Dog d3(d2);
+		d3.makeSound();
+	}
+	std::cout << std::endl;
 }
 
 int main()
@@ -76,5 +130,7 @@ int main()
 	ProvidedTests();
 	AnimalTests();
 	CatTests();
-	std::cout << std::endl;
+	DogTests();
+	WrongCatTests();
+	WrongProvidedTests();
 }

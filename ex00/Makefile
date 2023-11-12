@@ -1,10 +1,9 @@
 #CXX is short for CPP Compiler
 CXX:=c++
 NAME:=prg
-SRCS:=main.cpp Animal.cpp Cat.cpp Dog.cpp
+SRCS:=main.cpp Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp
 OBJS:= ${SRCS:.cpp=.o} 
 CPPFLAGS:=-Wall -Wextra -Werror -std=c++98 
-#Interesting? flags: -Wshadow and -Wno-shadow
 
 all: $(NAME)
 
@@ -12,10 +11,10 @@ $(NAME): $(OBJS)
 	$(CXX) $(CFLAGS) $(OBJS) -o $(NAME)
 
 clean:
-	rm $(OBJS)
+	rm -f $(OBJS)
 
 fclean: clean
-	rm $(NAME)
+	rm -f $(NAME)
 
 re: fclean
 	make all
